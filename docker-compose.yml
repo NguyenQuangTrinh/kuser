@@ -29,6 +29,7 @@ services:
       - mongodb
     volumes:
       - ./backend/uploads:/app/uploads
+      - /home/trinhdev/secrets/serviceAccountKey.json:/app/dist/serviceAccountKey.json
     networks:
       - kusernew-network
 
