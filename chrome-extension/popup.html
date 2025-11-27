@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KuserNew Tab Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 400px;
+            min-height: 300px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+
+        .header {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .status-dot.offline {
+            background: #ef4444;
+            animation: none;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .tabs-section {
+            margin-top: 16px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+
+        .tab-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .tab-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .tab-id {
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .tab-duration {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tab-link {
+            font-size: 12px;
+            opacity: 0.9;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .tab-post {
+            font-size: 11px;
+            opacity: 0.7;
+            font-family: monospace;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.7;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .empty-text {
+            font-size: 14px;
+        }
+
+        .footer {
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Scrollbar styling */
+        .tab-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .tab-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .tab-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .tab-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>⭐ KuserNew Tab Tracker</h1>
+        <div class="status-container">
+            <div id="statusDot" class="status-dot offline"></div>
+            <span id="statusText">Đang kiểm tra...</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="tab-list" id="tabList">
+            <!-- Tabs and empty state will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <div class="footer">
+        KuserNew Extension v1.0.0
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
