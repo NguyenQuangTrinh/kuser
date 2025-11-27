@@ -1,5 +1,7 @@
+import { API_CONFIG } from '../config/api';
+
 export const syncUserWithBackend = async (token: string) => {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+    const backendUrl = API_CONFIG.BACKEND_URL;
 
     try {
         const res = await fetch(`${backendUrl}/api/auth/sync`, {

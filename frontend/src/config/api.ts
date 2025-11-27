@@ -1,7 +1,9 @@
 // API Configuration
 export const API_CONFIG = {
-    BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000',
-    SOCKET_URL: process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:8000',
+    // When using Next.js rewrites, we use relative paths (empty string)
+    // The browser will request /api/... which Next.js proxies to the backend
+    BACKEND_URL: '',
+    SOCKET_URL: '',
 };
 
 // Helper function to build API URLs

@@ -5,6 +5,8 @@ import { io, Socket } from 'socket.io-client';
 import toast from 'react-hot-toast';
 import { useAuth } from './AuthContext';
 
+import { API_CONFIG } from '../config/api';
+
 interface SocketContextType {
     socket: Socket | null;
     isConnected: boolean;
@@ -28,7 +30,12 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const { user, updatePoints } = useAuth();
 
     useEffect(() => {
-        const socketInstance = io(process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000');
+        // Connect to the same origin (relative path)
+        // The path option tells socket.io where to look for the socket endpoint
+        const socketInstance = io(API_CONFIG.SOCKET_URL, {
+            path: '/socket.io',
+            transports: ['websocket', 'polling'],
+        });
 
         console.log('Socket connected:', socketInstance.id);
         setIsConnected(true);
