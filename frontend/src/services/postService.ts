@@ -1,4 +1,4 @@
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://192.168.1.33:8000';
 
 export const createPost = async (token: string, title: string, content: string, maxView: number) => {
     const res = await fetch(`${BACKEND_URL}/api/posts`, {
