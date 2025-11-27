@@ -11,6 +11,13 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+ARG NEXT_PUBLIC_BACKEND_URL
+ARG NEXT_PUBLIC_SOCKET_URL
+
+# Gán biến ARG vào ENV để lệnh "npm run build" ở dưới đọc được
+ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
+ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
+
 # Build application
 RUN npm run build
 
