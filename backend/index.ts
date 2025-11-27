@@ -25,7 +25,7 @@ const allowedOrigins = FRONTEND_URL.split(',').map(url => url.trim());
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true
   }
