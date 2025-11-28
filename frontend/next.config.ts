@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/socket.io',
-        destination: `${process.env.BACKEND_URL || 'http://backend:8000'}/socket.io`,
+        destination: `${process.env.BACKEND_URL || 'http://backend:8000'}/socket.io/`,
       },
       {
         source: '/socket.io/:path*',
