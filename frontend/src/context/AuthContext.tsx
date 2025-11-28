@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const fetchUserProfile = async (uid: string, token: string) => {
         try {
-            const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://192.168.1.33:8000';
+            const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
             const response = await fetch(`${BACKEND_URL}/api/auth/sync`, {
                 method: 'POST',
                 headers: {

@@ -4,7 +4,6 @@ import React, { createContext, useContext, useEffect, useState, useCallback } fr
 import { useAuth } from './AuthContext';
 import { useSocket } from './SocketContext';
 import { getPostsAction, getFeedPostsAction, getInfiniteFeedPostsAction } from '@/actions/post';
-import toast from 'react-hot-toast';
 
 export interface Post {
     _id: string;
