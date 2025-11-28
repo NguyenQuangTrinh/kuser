@@ -7,6 +7,10 @@ import { useAuth } from './AuthContext';
 
 import { API_CONFIG } from '../config/api';
 
+// For local development, connect directly to backend
+// For production (Docker), use relative path (empty string) which gets proxied
+const SOCKET_URL = process.env.NEXT_PUBLIC_BACKEND_URL || API_CONFIG.SOCKET_URL;
+
 interface SocketContextType {
     socket: Socket | null;
     isConnected: boolean;
@@ -32,7 +36,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     useEffect(() => {
         // Connect to the same origin (relative path)
         // The path option tells socket.io where to look for the socket endpoint
-        const socketInstance = io(API_CONFIG.SOCKET_URL, {
+        const socketInstance = io(SOCKET_URL, {
             path: '/socket.io',
             transports: ['polling', 'websocket'],
             reconnection: true,
