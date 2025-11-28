@@ -132,8 +132,8 @@ router.get('/all', verifyToken, requireAdmin, async (req: Request, res: Response
 
 // @route   GET /api/extension/download/:id
 // @desc    Download extension file
-// @access  Private
-router.get('/download/:id', verifyToken, async (req: Request, res: Response) => {
+// @access  Public
+router.get('/download/:id', async (req: Request, res: Response) => {
     try {
         const extension = await ExtensionUpload.findById(req.params.id);
 
