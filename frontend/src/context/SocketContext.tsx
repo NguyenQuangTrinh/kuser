@@ -32,7 +32,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     useEffect(() => {
         // Connect to the same origin (relative path)
         // The path option tells socket.io where to look for the socket endpoint
-        const socketInstance = io(API_CONFIG.SOCKET_URL || 'localhost:8000', {
+        const socketInstance = io(API_CONFIG.SOCKET_URL, {
             path: '/socket.io',
             transports: ['websocket', 'polling'],
         });
