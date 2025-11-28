@@ -34,7 +34,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         // The path option tells socket.io where to look for the socket endpoint
         const socketInstance = io(API_CONFIG.SOCKET_URL, {
             path: '/socket.io',
-            transports: ['polling', 'websocket'],
+            transports: ['websocket', 'polling'],
         });
 
         console.log('Socket connected:', socketInstance.id);
