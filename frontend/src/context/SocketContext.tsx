@@ -35,18 +35,21 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         const socketInstance = io(API_CONFIG.SOCKET_URL, {
             path: '/socket.io',
             transports: ['polling', 'websocket'],
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionAttempts: 5
         });
 
-        console.log('Socket connected:', socketInstance.id);
-        setIsConnected(true);
+        socketInstance.on('connect', () => {
+            console.log('Socket connected:', socketInstance.id);
+            setIsConnected(true);
 
-        // Join user-specific room
-        if (user) {
-            console.log('[DEBUG] Frontend emitting join_user_room for:', user.uid);
-            socketInstance.emit('join_user_room', user.uid);
-        } else {
-            console.log('[DEBUG] User not found in SocketContext, cannot join room');
-        }
+            // Join user-specific room after connection is established
+            if (user) {
+                console.log('[DEBUG] Frontend emitting join_user_room for:', user.uid);
+                socketInstance.emit('join_user_room', user.uid);
+            }
+        });
 
         socketInstance.on('disconnect', () => {
             console.log('Socket disconnected');
